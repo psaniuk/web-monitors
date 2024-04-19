@@ -74,7 +74,7 @@ The app should be distributed as a Docker image but it's possible to run the app
 1. Follow the steps above to create a Python virtual environment and restore all packages.
 2. Create PostgreSQL Database `web_monitors_db` in your cloud.
 3. Use `db/create_db.sql` to create tables.
-4. Create `web_monitors_app` user in Aiven Cloud.
+4. Create `web_monitors_app` user in your PostgreSQL cluster.
 5. Grant `INSERT` permissions for the new user:
 ```
 GRANT INSERT

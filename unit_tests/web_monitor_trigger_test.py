@@ -25,6 +25,6 @@ class TestWebMonitorTrigger:
         assert test_queue.qsize() >= 1
 
     def createMonitorTrigger(self, queue=Queue()):
-        config = HttpCheckConfig("https://www.aiven.io", 200)
+        config = HttpCheckConfig("https://www.google.com", 200)
         triggerConfig = HttpCheckTrigger(0.1, [config])
         return WebMonitorTrigger(triggerConfig, queue)

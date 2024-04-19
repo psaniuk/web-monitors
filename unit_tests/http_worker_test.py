@@ -21,7 +21,7 @@ class TestHttpWorker:
 
     def test_put_item_to_triggers_queue_without_start_assume_wont_consume(self):
         triggers_queue = Queue()
-        triggers_queue.put_nowait(HttpCheckConfig("https://www.aiven.io", 1000))
+        triggers_queue.put_nowait(HttpCheckConfig("https://www.google.com", 1000))
         httpWorker = HttpWorker(self.__createHttpClient(), triggers_queue, Queue())
         assert triggers_queue.qsize() == 1
         httpWorker.start()
@@ -34,7 +34,7 @@ class TestHttpWorker:
         )
 
         httpWorker.start()
-        http_check = HttpCheckConfig("https://www.aiven.io", 1000)
+        http_check = HttpCheckConfig("https://www.google.com", 1000)
         triggers_queue.put_nowait(http_check)
 
         time.sleep(0.2)
@@ -51,7 +51,7 @@ class TestHttpWorker:
         )
         httpWorker.start()
         num_of_checks = 10
-        for check in [HttpCheckConfig("https://www.aiven.io", 1000)] * num_of_checks:
+        for check in [HttpCheckConfig("https://www.google.com", 1000)] * num_of_checks:
             triggers_queue.put_nowait(check)
 
         time.sleep(0.5)
@@ -66,7 +66,7 @@ class TestHttpWorker:
         )
         httpWorker.start()
 
-        http_check = HttpCheckConfig("https://www.aiven.io", 1000)
+        http_check = HttpCheckConfig("https://www.google.com", 1000)
         triggers_queue.put_nowait(http_check)
         httpWorker.stop()
         triggers_queue.put_nowait(http_check)
@@ -75,5 +75,5 @@ class TestHttpWorker:
 
     def __createHttpClient(self) -> HttpClient:
         return lambda http_config, dateTimeProvider: HttpSuccessResult(
-            utcNow(), "https://aiven.io", 100, 200
+            utcNow(), "https://www.google.com", 100, 200
         )

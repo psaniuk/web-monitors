@@ -39,7 +39,7 @@ class TestHttpResultAggregator:
         )
         aggregator.start()
 
-        success_result = HttpSuccessResult(utcNow(), "https://aiven.io", 1000, 200)
+        success_result = HttpSuccessResult(utcNow(), "https://google.com", 1000, 200)
         for _ in range(queue_size):
             http_worker_queue.put(success_result)
 

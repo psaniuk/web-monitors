@@ -15,7 +15,7 @@ class TestMetricsRepository:
         sql_executor_mock = MagicMock()
         repository = HttpResultRepository(sql_executor_mock)
         http_result = HttpSuccessResult(
-            utcNow(), "https://aiven.io", 1000, 2000, http_content
+            utcNow(), "https://google.com", 1000, 2000, http_content
         )
         repository.save([http_result])
 
@@ -36,7 +36,7 @@ class TestMetricsRepository:
         repository = HttpResultRepository(sql_executor_mock)
 
         http_results = [
-            HttpSuccessResult(utcNow(), "https://aiven.io", 1000, 2000)
+            HttpSuccessResult(utcNow(), "https://google.com", 1000, 2000)
         ] * 10
         repository.save(http_results)
 
@@ -49,7 +49,7 @@ class TestMetricsRepository:
     ):
         sql_executor_mock = MagicMock()
         repository = HttpResultRepository(sql_executor_mock)
-        http_result = HttpFailedResult(utcNow(), "https://aiven.io", "error")
+        http_result = HttpFailedResult(utcNow(), "https://google.com", "error")
         repository.save([http_result])
 
         sql_query, sql_parameters = sql_executor_mock.insert.call_args_list[0][0]
