@@ -1,5 +1,6 @@
 from queue import Empty as QueueEmptyException
 from queue import Queue
+import time
 
 from app.app_logging import getLogger
 from app.background_jobs.background_job import BackgroundJob
@@ -33,6 +34,7 @@ class HttpResultAggregator(BackgroundJob):
                             f"HTTP worker queue is empty. Saving {len(buffer)} items into database"
                         )
                         buffer = []
+                    time.sleep(0.1) 
                     continue
 
                 if len(buffer) >= self.__batch_size:

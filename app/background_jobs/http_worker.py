@@ -1,6 +1,7 @@
 from queue import Empty as QueueEmptyException
 from queue import Full as QueueFullException
 from queue import Queue
+import time
 
 from app.app_logging import getLogger
 from app.background_jobs.background_job import BackgroundJob
@@ -21,6 +22,7 @@ class HttpWorker(BackgroundJob):
     def _execute(self):
         while self._is_running:
             if self.__input_queue.empty():
+                time.sleep(0.1)
                 continue
 
             try:

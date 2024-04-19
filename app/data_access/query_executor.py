@@ -18,5 +18,4 @@ class PostgreSqlQueryExecutor:
                 cursor.executemany(query, parameters)
                 connection.commit()
         finally:
-            connection.close()
             self.__connection_pool.putconn(connection)
