@@ -47,7 +47,7 @@ Python 3.12.2 was used to build the app. The app can be launched locally in `qa`
 **QA configuration (local setup)** 
 1. Navigate to the project root directory:
 ```
-cd pythonswe-05.04.2024-psaniuk 
+cd web-monitors
 ```
 2. Setup Python [virtual environment](https://docs.python.org/3/library/venv.html)
 ```
