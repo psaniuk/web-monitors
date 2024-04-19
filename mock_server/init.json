@@ -1,0 +1,38 @@
+[
+    {
+        "httpRequest": {
+            "method": "GET",
+            "path": "/not_found"
+        },
+        "httpResponse": {
+            "statusCode": 404
+        }
+    },
+    {
+        "httpRequest": {
+            "method": "GET",
+            "path": "/regex_test"
+        },
+        "httpResponse": {
+            "statusCode": 200,
+            "body": "{\"message\": \"Not Found\"}",
+            "headers": {
+                "Content-Type": "application/json"
+            }
+        }
+    },
+    {
+        "httpRequest": {
+            "method": "GET",
+            "path": ".*"
+        },
+        "httpResponse": {
+            "statusCode": 200,
+            "body": "",
+            "delay": {
+                "timeUnit": "MILLISECONDS",
+                "value": 200
+            }
+        }
+    }
+]

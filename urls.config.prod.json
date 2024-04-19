@@ -1,0 +1,33 @@
+[
+    {
+        "interval": 5,
+        "url": "https://google.com/",
+        "timeout": 300
+    },
+    {
+        "interval": 1,
+        "url": "https://google.com/__health",
+        "timeout": 300
+    },
+    {
+        "interval": 2,
+        "url": "https://google.com/ping",
+        "timeout": 300
+    },
+    {
+        "interval": 5,
+        "url": "https://google.com/",
+        "timeout": 300
+    },
+    {
+        "interval": 1,
+        "url": "https://aws.amazon.com/",
+        "regex": "\\w+",
+        "timeout": 300
+    },
+    {
+        "interval": 2,
+        "url": "https://google.com/",
+        "timeout": 300
+    }
+]

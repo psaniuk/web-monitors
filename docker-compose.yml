@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_DB: web_monitors_db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pwd
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db/sql:/docker-entrypoint-initdb.d
+      # - ./db/data:/var/lib/postgresql/data
+    networks:
+      - web_monitors_app
+
+  mockServer:
+    image: mockserver/mockserver:5.14.0
+    ports:
+      - 1080:1080
+    environment:
+      MOCKSERVER_PROPERTY_FILE: /config/mockserver.properties
+      MOCKSERVER_INITIALIZATION_JSON_PATH: /config/init.json
+    volumes:
+      - ./mock_server:/config
+    networks:
+      - web_monitors_app
+
+networks:
+  web_monitors_app:
+    driver: bridge
