@@ -17,8 +17,8 @@ These components serve as the fundamental building blocks of the application, wo
 
 **How many HTTP checks a single instance of the app can serve?**
 - assuming the response time of an average HTTP request is 200ms (based on benchmarks of HTTP req traveling from North America to Europe)
-- a single thread can fulfill 5 requests in one second and 25 requests in 5 seconds (min interval from the system requirements)
-- assuming the app is deployed on a server with 36 cores (72 hardware threads), 72 * 25 = 1800 HTTP checks every 5 seconds possible 
+- a single thread can fulfill 5 requests in one second and 25 requests in 5 seconds
+- assuming the app is deployed on a server with 36 cores (72 hardware threads), 72 * 5 = 360 HTTP checks every second possible 
 
 **Database**
 
@@ -30,7 +30,7 @@ Database scheme defined in `db/create_db.sql` script. Utilize this script to cre
 - single record size = 8 bytes + 60 bytes + 4 bytes + 4 bytes + 100 bytes = 176 bytes
 - 15 * 10^6 * 176 = 2640 * 10^6 = 2.5 * 10^9 bytes = 2.5 GB daily / 75 GB monthly / 1 TB yearly
 
-In favor of reading/writing performance `metrics` table is partitioned by the `request_timestamp`. However, consistent hashing might be considered for the database partitioning. It depends on the data access patterns and the final decision can be made by clarifying the system requirements. 
+In favor of reading/writing performance `metrics` table is partitioned by the `request_timestamp`. Consistent hashing is not considered at the current stage.
 
 ## APP Configuration
 The HTTP URLs monitored by the app are configured in the `urls.config.{env_name}.json` file. 
